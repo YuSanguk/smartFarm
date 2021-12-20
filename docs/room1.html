@@ -10,7 +10,37 @@
     <style></style>
   </head>
   <body>
-    <div id="background" style="background-image: url('../source/6.jpg')">
+    <div
+      id="background"
+      style="background-image: url('../source/6_grassadd.jpg')"
+    >
+      <div onclick="openBag()" class="bagIcon"></div>
+      <div class="bagBackground invisible">
+        <div class="inBag">item</div>
+      </div>
+      <img
+        class="nuccy invisible"
+        id="nuccy1"
+        src="../source/누양동이.png"
+        style="left: 80px; top: 40px"
+      />
+      <div
+        class="touch"
+        id="touch1"
+        style="width: 100px; height: 100px; top: 610px; left: 1280px"
+      ></div>
+      <img
+        class="nuccy invisible"
+        id="nuccy2"
+        src="../source/누밸브.png"
+        style="left: 75px; top: 28px"
+      />
+      <div
+        class="touch"
+        id="touch2"
+        style="width: 400px; height: 180px; top: 400px; left: 1000px"
+      ></div>
+
       <img
         class="arrow"
         src="../source/arrow.png"
@@ -22,7 +52,6 @@
         "
         onclick="toNextRoom()"
       />
-
       <img
         class="arrow"
         src="../source/arrow.png"
@@ -36,7 +65,16 @@
       />
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="../js/bag.js"></script>
     <script>
+      addEventListener("load", () => {
+        const bucket = window.localStorage.getItem("bucketGet");
+        if (bucket === "true") {
+          document.querySelector("#background").style["background-image"] =
+            'url("../source/6_grass.jpg")';
+        }
+      });
+
       const goBack = () => {
         window.location.assign("길2.html");
       };
@@ -44,7 +82,37 @@
       const toNextRoom = () => {
         window.location.assign("room1_inside.html");
       };
-      // addEventListener("load", () => {});
+
+      const touch1 = document.querySelector("#touch1");
+      touch1.addEventListener("click", () => {
+        document.querySelector("#background").style["background-image"] =
+          'url("../source/6_grass.jpg")';
+        touch1.remove();
+        $("#nuccy1").addClass("invisible");
+        window.localStorage.setItem("bucketGet", "true");
+        window.localStorage.setItem("bucket", "true");
+      });
+
+      touch1.addEventListener("mouseover", () => {
+        $("#nuccy1").removeClass("invisible");
+      });
+
+      touch1.addEventListener("mouseout", () => {
+        $("#nuccy1").addClass("invisible");
+      });
+
+      const touch2 = document.querySelector("#touch2");
+      touch2.addEventListener("click", () => {
+        window.location.assign("belbSwitch.html");
+      });
+
+      touch2.addEventListener("mouseover", () => {
+        $("#nuccy2").removeClass("invisible");
+      });
+
+      touch2.addEventListener("mouseout", () => {
+        $("#nuccy2").addClass("invisible");
+      });
     </script>
   </body>
 </html>

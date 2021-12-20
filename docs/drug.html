@@ -11,11 +11,55 @@
   </head>
   <body>
     <div id="background" style="background-image: url('../source/약품.jpg')">
-      <img class="arrow" src="../source/arrow.png" style="" onclick="" />
+      <div onclick="openBag()" class="bagIcon"></div>
+      <div class="bagBackground invisible">
+        <div class="inBag">item</div>
+      </div>
+      <img
+        class="nuccy invisible"
+        src="../source/누약통.png"
+        style="height: 100%; left: 190px; transform: rotateZ(-0.2deg)"
+      />
+      <div
+        class="touch"
+        style="width: 80px; height: 160px; top: 50px; left: 1220px"
+      ></div>
+
+      <img
+        class="arrow"
+        src="../source/arrow.png"
+        style="transform: rotateZ(-90deg); top: 40px; left: 40px; width: 150px"
+        onclick="goBack()"
+      />
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="../js/bag.js"></script>
     <script>
-      // addEventListener("load", () => {});
+      addEventListener("load", () => {
+        if (window.localStorage.getItem("drug") === "true") {
+          document.querySelector(".touch").remove();
+          document.querySelector(".nuccy").remove();
+        }
+      });
+
+      const goBack = () => {
+        window.location.assign("lab.html");
+      };
+
+      const touch = document.querySelector(".touch");
+      touch.addEventListener("click", () => {
+        window.localStorage.setItem("drug", "true");
+        document.querySelector(".touch").remove();
+        document.querySelector(".nuccy").remove();
+      });
+
+      touch.addEventListener("mouseover", () => {
+        $(".nuccy").removeClass("invisible");
+      });
+
+      touch.addEventListener("mouseout", () => {
+        $(".nuccy").addClass("invisible");
+      });
     </script>
   </body>
 </html>

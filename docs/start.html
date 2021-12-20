@@ -10,7 +10,11 @@
     <style></style>
   </head>
   <body>
-    <div id="background" style="background-image: url('../source/1.jpg')">
+    <div id="background" style="background-image: url('../source/1보정.jpg')">
+      <div onclick="openBag()" class="bagIcon"></div>
+      <div class="bagBackground invisible">
+        <div class="inBag">item</div>
+      </div>
       <img
         class="arrow"
         src="../source/arrow.png"
@@ -35,6 +39,7 @@
       />
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="../js/bag.js"></script>
     <script>
       const toRoad = () => {
         window.location.assign("길1.html");

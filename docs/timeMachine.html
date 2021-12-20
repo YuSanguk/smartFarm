@@ -10,40 +10,24 @@
     <style></style>
   </head>
   <body>
-    <div id="background" style="background-image: url('../source/path.jpg')">
+    <div
+      id="background"
+      style="background-image: url('../source/스위치 2.jpg')"
+    >
       <img
         class="arrow"
         src="../source/arrow.png"
         style="top: 5px"
-        onclick="callAlert()"
+        onclick="goBack()"
       />
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
-      const callAlert = () => {
-        let timerInterval;
-        Swal.fire({
-          text: "물을 담았습니다",
-          timer: 1700,
-          padding: 0,
-          "font-size": "10px",
-          width: 200,
-          backdrop: false,
-          position: "bottom-end",
-          timerProgressBar: true,
-          didOpen: () => {
-            Swal.showLoading();
-          },
-          willClose: () => {
-            clearInterval(timerInterval);
-          },
-        }).then(result => {
-          /* Read more about handling dismissals below */
-        });
+      goBack = () => {
+        window.location.assign("belb.html");
       };
-      const boom = () => {};
       // addEventListener("load", () => {});
     </script>
   </body>

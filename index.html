@@ -6,198 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
-  <style>
-    #slot {
-      display: flex;
-      column-gap: 11px;
-    }
-
-    #slotA,
-    #slotB {
-      width: 60px;
-      border: 1px solid black;
-    }
-  </style>
+  <style></style>
   <body>
     <div>
-      <p>7L를 만들자!</p>
-
-      <div id="slot">
-        <span id="slotA" onclick="empty('a')"></span>
-        <span>-></span>
-        <span id="slotB" onclick="empty('b')"></span>
-        <span onclick="fill()">work</span>
-      </div>
-      <p onclick="posSet('inf')" id="water">무한물</p>
-      <p onclick="posSet('b1')" id="b1">비커1 (3L) (현재 : 0L)</p>
-      <p onclick="posSet('b2')" id="b2">비커2 (5L) (현재 : 0L)</p>
-      <p onclick="posSet('e')" id="score">넣는곳 (현재: 0L)</p>
-      <p onclick="check()">완료</p>
-      <p onclick="restart()">다시 시작</p>
+      <div onclick="start()">시작하기</div>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
-      const scoreHtml = document.querySelector("#score");
-      let water1 = 0;
-      let water2 = 0;
-      let result = 0;
-      let pos = "a";
-      let itemA = "";
-      let itemB = "";
+      const start = () => {
+        window.localStorage.clear();
 
-      const setA = p => {
-        document.querySelector("#slotA").innerHTML = p;
-        itemA = p;
-        if (document.querySelector("#slotB").innerHTML === "") pos = "b";
-        else pos = "c";
-      };
+        window.localStorage.setItem("seed", "false");
+        window.localStorage.setItem("bucket", "false");
+        window.localStorage.setItem("waterBucket", "false");
+        window.localStorage.setItem("drug", "false");
+        window.localStorage.setItem("superDrug", "false");
+        window.localStorage.setItem("weed", "false");
+        window.localStorage.setItem("goldWeed", "false");
 
-      const setB = p => {
-        document.querySelector("#slotB").innerHTML = p;
-        pos = "c";
-        itemB = p;
-      };
-
-      const posSet = p => {
-        if (p === "inf") {
-          if (pos === "a") {
-            setA("물");
-          } else if (pos === "b") {
-            setB("물");
-          }
-        } else if (p === "b1") {
-          if (pos === "a") {
-            setA("비커A");
-          } else if (pos === "b") {
-            setB("비커A");
-          }
-        } else if (p === "b2") {
-          if (pos === "a") {
-            setA("비커B");
-          } else if (pos === "b") {
-            setB("비커B");
-          }
-        } else if (p === "e") {
-          if (pos === "b") setB("enter");
-        }
-      };
-
-      const empty = p => {
-        if (p === "a") {
-          document.querySelector("#slotA").innerHTML = "";
-          pos = "a";
-        } else {
-          document.querySelector("#slotB").innerHTML = "";
-          if ((pos = "c")) pos = "b";
-        }
-      };
-
-      const fill = () => {
-        const p1 = document.querySelector("#slotA").innerHTML;
-        const p2 = document.querySelector("#slotB").innerHTML;
-        if (p1 !== "" && p2 !== "") {
-          document.querySelector("#slotA").innerHTML = "";
-          document.querySelector("#slotB").innerHTML = "";
-          pos = "a";
-          // 물, 비커A, 비커B, enter
-          // itemA, itemB
-          if (itemA === itemB) {
-          } else if (itemA === "물") {
-            if (itemB === "enter") {
-            } else {
-              if (itemB === "비커A") {
-                const text = "비커1 (3L) (현재 : 3L)";
-                document.querySelector("#b1").innerHTML = text;
-                water1 = 3;
-              } else {
-                const text = "비커2 (5L) (현재 : 5L)";
-                document.querySelector("#b2").innerHTML = text;
-                water2 = 5;
-              }
-            }
-          } else if (itemA === "비커A") {
-            if (itemB === "물") {
-              const text = "비커1 (3L) (현재 : 0L)";
-              document.querySelector("#b1").innerHTML = text;
-              water1 = 0;
-            } else if (itemB === "비커B") {
-              if (water2 <= 2) {
-                const w = water1;
-                water2 = water2 + water1;
-                water1 = water1 - w;
-                const text = "비커1 (3L) (현재 : " + water1 + "L)";
-                document.querySelector("#b1").innerHTML = text;
-                const text2 = "비커2 (5L) (현재 : " + water2 + "L)";
-                document.querySelector("#b2").innerHTML = text2;
-              } else if (water2 > 2) {
-                const sum = water2 + water1;
-
-                if (sum > 8) {
-                } else if (sum > 5) {
-                  water1 = sum - 5;
-                  water2 = 5;
-                } else {
-                  water2 = sum;
-                  water1 = 0;
-                }
-
-                const text = "비커1 (3L) (현재 : " + water1 + "L)";
-                document.querySelector("#b1").innerHTML = text;
-                const text2 = "비커2 (5L) (현재 : " + water2 + "L)";
-                document.querySelector("#b2").innerHTML = text2;
-              }
-              // itemB로 물 옮기기 ()
-            } else if (itemB === "enter") {
-              result = water1 + result;
-              water1 = 0;
-              const text = "비커1 (3L) (현재 : " + water1 + "L)";
-              document.querySelector("#b1").innerHTML = text;
-              const text2 = "넣는곳 (현재: " + result + "L)";
-              document.querySelector("#score").innerHTML = text2;
-              // itemB로 물 옮기기 (비커A는 0으로)
-            }
-          } else if (itemA === "비커B") {
-            if (itemB === "물") {
-              water2 = 0;
-              const text2 = "비커2 (5L) (현재 : " + water2 + "L)";
-              document.querySelector("#b2").innerHTML = text2;
-            } else if (itemB === "비커A") {
-              const sum = water1 + water2;
-              const w = water1;
-              if (sum >= 3) {
-                water1 = 3;
-                water2 = sum - 3;
-              }
-              if (sum < 3) {
-                water1 = sum;
-                water2 = 0;
-              }
-
-              const text = "비커1 (3L) (현재 : " + water1 + "L)";
-              document.querySelector("#b1").innerHTML = text;
-              const text2 = "비커2 (5L) (현재 : " + water2 + "L)";
-              document.querySelector("#b2").innerHTML = text2;
-            } else if (itemB === "enter") {
-              result = water2 + result;
-              water2 = 0;
-              const text2 = "비커2 (5L) (현재 : " + water2 + "L)";
-              document.querySelector("#b2").innerHTML = text2;
-              const text3 = "넣는곳 (현재: " + result + "L)";
-              document.querySelector("#score").innerHTML = text3;
-            }
-          }
-        }
-      };
-
-      const check = () => {
-        if (result === 7) {
-          alert("성공");
-        }
-      };
-
-      const restart = () => {
-        window.location.reload();
+        window.location.assign("docs/start.html");
       };
     </script>
   </body>

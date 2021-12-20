@@ -11,6 +11,20 @@
   </head>
   <body>
     <div id="background" style="background-image: url('../source/8.jpg')">
+      <div onclick="openBag()" class="bagIcon"></div>
+      <div class="bagBackground invisible">
+        <div class="inBag">item</div>
+      </div>
+      <img
+        class="nuccy invisible"
+        src="../source/누블랙홀.png"
+        style="left: 37px; top: 26px"
+      />
+      <div
+        class="touch"
+        style="width: 20px; height: 140px; left: 600px; top: 350px"
+        onclick="toDoor()"
+      ></div>
       <img
         class="arrow"
         src="../source/arrow.png"
@@ -30,6 +44,7 @@
       />
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="../js/bag.js"></script>
     <script>
       const toBack = () => {
         window.location.assign("start.html");
@@ -38,6 +53,19 @@
       const toInside = () => {
         window.location.assign("lab.html");
       };
+
+      const touch = document.querySelector(".touch");
+      touch.addEventListener("mouseover", () => {
+        $(".nuccy").removeClass("invisible");
+      });
+
+      touch.addEventListener("mouseout", () => {
+        $(".nuccy").addClass("invisible");
+      });
+
+      touch.addEventListener("click", () => {
+        window.location.assign("블랙홀.html");
+      });
       // addEventListener("load", () => {});
     </script>
   </body>

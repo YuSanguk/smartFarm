@@ -11,6 +11,20 @@
   </head>
   <body>
     <div id="background" style="background-image: url('../source/5.jpg')">
+      <div onclick="openBag()" class="bagIcon"></div>
+      <div class="bagBackground invisible">
+        <div class="inBag">item</div>
+      </div>
+      <img
+        class="nuccy invisible"
+        src="../source/누식물심기.png"
+        style="left: 50px; top: 43.5px"
+      />
+      <div
+        class="touch"
+        style="width: 30px; height: 25px; left: 790px; top: 685px"
+        onclick="toBeaker()"
+      ></div>
       <img
         class="arrow"
         src="../source/arrow.png"
@@ -24,10 +38,28 @@
       />
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="../js/bag.js"></script>
     <script>
       const goBack = () => {
         window.location.assign("room1.html");
       };
+
+      const touch = document.querySelector(".touch");
+      touch.addEventListener("click", () => {
+        if (window.localStorage.getItem("seed") === "true") {
+          // 식물 심기
+        } else {
+          // 팝업창
+        }
+      });
+
+      touch.addEventListener("mouseover", () => {
+        $(".nuccy").removeClass("invisible");
+      });
+
+      touch.addEventListener("mouseout", () => {
+        $(".nuccy").addClass("invisible");
+      });
       // addEventListener("load", () => {});
     </script>
   </body>

@@ -11,6 +11,34 @@
   </head>
   <body>
     <div id="background" style="background-image: url('../source/비커.jpg')">
+      <div onclick="openBag()" class="bagIcon"></div>
+      <div class="bagBackground invisible">
+        <div class="inBag">item</div>
+      </div>
+      <img
+        class="nuccy invisible"
+        id="nuccy1"
+        src="../source/누비커.png"
+        style="left: 60px; top: 30px"
+      />
+      <div
+        class="touch"
+        id="touch1"
+        style="width: 540px; height: 240px; left: 700px; top: 420px"
+        onclick="toBeaker()"
+      ></div>
+      <img
+        class="nuccy invisible"
+        id="nuccy2"
+        src="../source/누서랍.png"
+        style="left: 20px; top: 10px"
+      />
+      <div
+        class="touch"
+        id="touch2"
+        style="width: 195px; height: 140px; left: 100px; top: 120px"
+        onclick="toDrawer()"
+      ></div>
       <img
         class="arrow"
         src="../source/arrow.png"
@@ -30,6 +58,7 @@
       />
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="../js/bag.js"></script>
     <script>
       const toBack = () => {
         window.location.assign("길3.html");
@@ -38,6 +67,31 @@
       const toBelb = () => {
         window.location.assign("belb.html");
       };
+
+      const toDrawer = () => {
+        window.location.assign("drug.html");
+      };
+
+      const toBeaker = () => {
+        window.location.assign("비커.html");
+      };
+
+      const touch1 = document.querySelector("#touch1");
+      touch1.addEventListener("mouseover", () => {
+        $("#nuccy1").removeClass("invisible");
+      });
+
+      touch1.addEventListener("mouseout", () => {
+        $("#nuccy1").addClass("invisible");
+      });
+      const touch2 = document.querySelector("#touch2");
+      touch2.addEventListener("mouseover", () => {
+        $("#nuccy2").removeClass("invisible");
+      });
+
+      touch2.addEventListener("mouseout", () => {
+        $("#nuccy2").addClass("invisible");
+      });
       // addEventListener("load", () => {});
     </script>
   </body>

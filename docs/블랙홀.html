@@ -10,7 +10,7 @@
     <style></style>
   </head>
   <body>
-    <div id="background" style="background-image: url('../source/4.jpg')">
+    <div id="background" style="background: black">
       <div onclick="openBag()" class="bagIcon"></div>
       <div class="bagBackground invisible">
         <div class="inBag">item</div>
@@ -20,36 +20,34 @@
         src="../source/arrow.png"
         style="
           width: 120px;
-          left: 850px;
-          top: 560px;
-          transform: rotateZ(-60deg);
-        "
-        onclick="toNextRoom()"
-      />
-
-      <img
-        class="arrow"
-        src="../source/arrow.png"
-        style="
-          width: 120px;
-          left: 700px;
-          top: 720px;
-          transform: rotateZ(-140deg);
+          height: 120px;
+          transform: rotateZ(-90deg);
+          top: 40px;
+          left: 40px;
         "
         onclick="goBack()"
       />
+      <img src="../source/seed.png" id="seed" onclick="getSeed()" />
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="../js/bag.js"></script>
     <script>
       const goBack = () => {
-        window.location.assign("길1.html");
+        window.location.assign("길3.html");
       };
 
-      const toNextRoom = () => {
-        window.location.assign("room1.html");
+      const getSeed = () => {
+        window.localStorage.setItem("seed", "true");
+        window.localStorage.setItem("getSeed", "true");
+        $("#seed").addClass("invisible");
       };
-      // addEventListener("load", () => {});
+
+      addEventListener("load", () => {
+        const getSeed = window.localStorage.getItem("getSeed");
+        if (getSeed === "true") {
+          $("#seed").addClass("invisible");
+        }
+      });
     </script>
   </body>
 </html>
