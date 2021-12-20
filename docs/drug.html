@@ -38,7 +38,10 @@
     <script src="../js/bag.js"></script>
     <script>
       addEventListener("load", () => {
-        if (window.localStorage.getItem("drug") === "true") {
+        if (
+          window.localStorage.getItem("drug") === "true" ||
+          window.localStorage.getItem("drugUse") === "true"
+        ) {
           document.querySelector(".touch").remove();
           document.querySelector(".nuccy").remove();
         }

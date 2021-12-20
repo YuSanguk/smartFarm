@@ -201,7 +201,27 @@
 
       const check = () => {
         if (result === 7) {
-          alert("성공");
+          window.localStorage.setItem("superDrug", "true");
+          window.localStorage.setItem("drug", "true");
+          window.localStorage.setItem("drugUse", "true");
+          Swal.fire({
+            text: "산성 용액을 획득했습니다",
+            timer: 1700,
+            padding: 0,
+            width: 300,
+            backdrop: false,
+            position: "bottom-end",
+            timerProgressBar: true,
+            didOpen: () => {
+              Swal.showLoading();
+            },
+            willClose: () => {
+              clearInterval(timerInterval);
+            },
+          }).then(result => {
+            window.location.assign("lab.html");
+            /* Read more about handling dismissals below */
+          });
         }
       };
 

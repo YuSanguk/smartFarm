@@ -33,6 +33,8 @@
 
       <div onclick="goBack()" class="backBtn">이전으로 돌아가기</div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="../js/bag.js"></script>
     <script>
@@ -41,7 +43,47 @@
       };
 
       const touch = document.querySelector(".touch");
-      touch.addEventListener("click", () => {});
+      touch.addEventListener("click", () => {
+        if (window.localStorage.getItem("superDrug") === "true") {
+          Swal.fire({
+            icon: "question",
+            html: "산성 용액을 사용하겠습니까?",
+            showCloseButton: true,
+            showCancelButton: true,
+            focusConfirm: false,
+            confirmButtonText: "네",
+            cancelButtonText: "아니요",
+          }).then(result => {
+            if (result.isConfirmed) {
+              let timerInterval;
+              Swal.fire({
+                text: "산성용액을 사용했습니다",
+                timer: 1700,
+                padding: 0,
+                width: 200,
+                backdrop: false,
+                position: "bottom-end",
+                timerProgressBar: true,
+                didOpen: () => {
+                  Swal.showLoading();
+                },
+                willClose: () => {
+                  clearInterval(timerInterval);
+                },
+              }).then(result => {
+                Swal.fire("산성 약품으로 문을 열었습니다");
+                /* Read more about handling dismissals below */
+              });
+              window.localStorage.setItem("superDrug", "false");
+              window.localStorage.setItem("openedDoor", "true");
+            }
+          });
+        } else if (window.localStorage.getItem("openedDoor") === "true") {
+          Swal.fire("문 내부는 미완");
+        } else {
+          Swal.fire("문이 굳세게 잠겨있다");
+        }
+      });
 
       touch.addEventListener("mouseover", () => {
         $(".nuccy").removeClass("invisible");
