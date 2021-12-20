@@ -57,6 +57,8 @@
         onclick="toBack()"
       />
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="../js/bag.js"></script>
     <script>
@@ -73,7 +75,11 @@
       };
 
       const toBeaker = () => {
-        window.location.assign("비커.html");
+        if (window.localStorage.getItem("drug") === "true") {
+          window.location.assign("비커.html");
+        } else {
+          Swal.fire("약품이 없어서 사용할 수 없다...");
+        }
       };
 
       const touch1 = document.querySelector("#touch1");

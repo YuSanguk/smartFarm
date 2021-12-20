@@ -64,6 +64,8 @@
         onclick="goBack()"
       />
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="../js/bag.js"></script>
     <script>
@@ -91,6 +93,24 @@
         $("#nuccy1").addClass("invisible");
         window.localStorage.setItem("bucketGet", "true");
         window.localStorage.setItem("bucket", "true");
+        let timerInterval;
+        Swal.fire({
+          text: "양동이를 획득했습니다.",
+          timer: 1700,
+          padding: 0,
+          width: 300,
+          backdrop: false,
+          position: "bottom-end",
+          timerProgressBar: true,
+          didOpen: () => {
+            Swal.showLoading();
+          },
+          willClose: () => {
+            clearInterval(timerInterval);
+          },
+        }).then(result => {
+          /* Read more about handling dismissals below */
+        });
       });
 
       touch1.addEventListener("mouseover", () => {

@@ -6,27 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../style/popup.css" />
     <link rel="stylesheet" href="../style/style.css" />
+    <link rel="stylesheet" href="../style/beaker.css" />
     <title>Document</title>
   </head>
-  <style>
-    #slot {
-      display: flex;
-      column-gap: 11px;
-    }
-
-    #slotA,
-    #slotB {
-      width: 60px;
-      border: 1px solid black;
-    }
-  </style>
   <body>
-    <div>
-      <div onclick="openBag()" class="bagIcon"></div>
-      <div class="bagBackground invisible">
-        <div class="inBag">item</div>
-      </div>
-      <p>7L를 만들자!</p>
+    <div onclick="openBag()" class="bagIcon"></div>
+    <div class="bagBackground invisible">
+      <div class="inBag">item</div>
+    </div>
+    <img
+      class="arrow"
+      src="../source/arrow.png"
+      style="transform: rotateZ(-90deg); top: 400px; left: 40px; width: 150px"
+      onclick="goBack()"
+    />
+    <div class="beaker-container">
+      <p>목표 : 7L를 만들자!</p>
 
       <div id="slot">
         <span id="slotA" onclick="empty('a')"></span>
@@ -34,17 +29,24 @@
         <span id="slotB" onclick="empty('b')"></span>
         <span onclick="fill()">work</span>
       </div>
-      <p onclick="posSet('inf')" id="water">무한물</p>
-      <p onclick="posSet('b1')" id="b1">비커1 (3L) (현재 : 0L)</p>
-      <p onclick="posSet('b2')" id="b2">비커2 (5L) (현재 : 0L)</p>
-      <p onclick="posSet('e')" id="score">넣는곳 (현재: 0L)</p>
+      <div id="beaker">
+        <p onclick="posSet('inf')" id="water">무한물</p>
+        <p onclick="posSet('b1')" id="b1">비커1 (3L) (현재 : 0L)</p>
+        <p onclick="posSet('b2')" id="b2">비커2 (5L) (현재 : 0L)</p>
+        <p onclick="posSet('e')" id="score">넣는곳 (현재: 0L)</p>
+      </div>
       <p onclick="check()">완료</p>
       <p onclick="restart()">다시 시작</p>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="../js/bag.js"></script>
     <script>
+      const goBack = () => {
+        window.location.assign("lab.html");
+      };
+
       const scoreHtml = document.querySelector("#score");
       let water1 = 0;
       let water2 = 0;

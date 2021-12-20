@@ -28,10 +28,12 @@
       <img
         class="arrow"
         src="../source/arrow.png"
-        style="transform: rotateZ(-90deg); top: 40px; left: 40px; width: 150px"
+        style="transform: rotateZ(-90deg); top: 440px; left: 40px; width: 150px"
         onclick="goBack()"
       />
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="../js/bag.js"></script>
     <script>
@@ -49,6 +51,23 @@
       const touch = document.querySelector(".touch");
       touch.addEventListener("click", () => {
         window.localStorage.setItem("drug", "true");
+        Swal.fire({
+          text: "약품을 획득했습니다. ",
+          timer: 1700,
+          padding: 0,
+          width: 300,
+          backdrop: false,
+          position: "bottom-end",
+          timerProgressBar: true,
+          didOpen: () => {
+            Swal.showLoading();
+          },
+          willClose: () => {
+            clearInterval(timerInterval);
+          },
+        }).then(result => {
+          /* Read more about handling dismissals below */
+        });
         document.querySelector(".touch").remove();
         document.querySelector(".nuccy").remove();
       });

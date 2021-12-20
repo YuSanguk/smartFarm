@@ -74,6 +74,7 @@ const updateBag = () => {
     "새싹",
     "황금 새싹",
   ];
+  const itemList3 = ["seed.png"];
   let cnt = 0;
   for (let i = 0; i < Object.keys(bagItem).length; i++) {
     const tag1 = document.createElement("div");
