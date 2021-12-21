@@ -10,7 +10,7 @@
     <style></style>
   </head>
   <body>
-    <div id="background" style="background-image: url('../source/4.jpg')">
+    <div id="background" style="background-image: url('../source/1재배실.jpg')">
       <div onclick="openBag()" class="bagIcon"></div>
       <div class="bagBackground invisible">
         <div class="inBag">item</div>
@@ -18,25 +18,13 @@
       <img
         class="arrow"
         src="../source/arrow.png"
-        style="
-          width: 120px;
-          left: 850px;
-          top: 560px;
-          transform: rotateZ(-60deg);
-        "
-        onclick="toNextRoom()"
-      />
-
-      <img
+        style="width: 150px; top: 350px; left: 90px; transform: rotateZ(-90deg)"
+        onclick="goBack()"
+      /><img
         class="arrow"
         src="../source/arrow.png"
-        style="
-          width: 120px;
-          left: 700px;
-          top: 720px;
-          transform: rotateZ(-140deg);
-        "
-        onclick="goBack()"
+        style="width: 120px; top: 550px; left: 950px; transform: rotateZ(30deg)"
+        onclick="go2()"
       />
     </div>
 
@@ -45,12 +33,13 @@
     <script src="../js/bag.js"></script>
     <script>
       const goBack = () => {
-        window.location.assign("길1.html");
+        window.location.assign("door1.html");
       };
 
-      const toNextRoom = () => {
-        window.location.assign("room1.html");
+      const go2 = () => {
+        window.location.assign("1재배실2.html");
       };
+
       // addEventListener("load", () => {});
     </script>
   </body>

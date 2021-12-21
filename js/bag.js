@@ -36,6 +36,7 @@ const getBagItem = () => {
   const superDrug = window.localStorage.getItem("superDrug");
   const weed = window.localStorage.getItem("weed");
   const goldWeed = window.localStorage.getItem("goldWeed");
+  const clock = window.localStorage.getItem("clock");
   let bagItem = {
     seed: seed,
     bucket: bucket,
@@ -44,6 +45,7 @@ const getBagItem = () => {
     superDrug: superDrug,
     weed: weed,
     goldWeed: goldWeed,
+    clock: clock,
   };
   return bagItem;
 };
@@ -64,6 +66,7 @@ const updateBag = () => {
     "superDrug",
     "weed",
     "goldWeed",
+    "clock",
   ];
   const itemList2 = [
     "씨앗",
@@ -73,6 +76,7 @@ const updateBag = () => {
     "강화된 약품",
     "새싹",
     "황금 새싹",
+    "시계",
   ];
   const itemList3 = [
     "씨앗.png",
@@ -82,6 +86,7 @@ const updateBag = () => {
     "용해액.png",
     "자라난새싹.png",
     "황금새싹.png",
+    "시계.png",
   ];
 
   let cnt = 0;
@@ -99,6 +104,7 @@ const updateBag = () => {
       tag2.setAttribute("src", "../source/주움/" + itemList3[i]);
       tag1.appendChild(tag2);
       tag1.appendChild(tag3);
+      if (itemList2[i] === "시계") tag1.classList.add("clock");
       document.querySelector(".inBag").append(tag1);
       cnt++;
     } else if (i === Object.keys(bagItem).length - 1 && cnt === 0) {
@@ -107,3 +113,9 @@ const updateBag = () => {
     }
   }
 };
+
+$(document).on("click", ".clock", () => {
+  if (window.localStorage.getItem("time") === "false")
+    Swal.fire("건물의 시계의 시간과 일치한다.");
+  else Swal.fire("건물의 시계의 시간과 일치하지 않는다.");
+});

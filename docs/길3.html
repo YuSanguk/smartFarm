@@ -43,6 +43,8 @@
         onclick="toBack()"
       />
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="../js/bag.js"></script>
     <script>
@@ -66,7 +68,12 @@
       touch.addEventListener("click", () => {
         window.location.assign("블랙홀.html");
       });
-      // addEventListener("load", () => {});
+      addEventListener("load", () => {
+        time = window.localStorage.getItem("time");
+        if (time === "1") {
+          $(".touch").remove();
+        }
+      });
     </script>
   </body>
 </html>

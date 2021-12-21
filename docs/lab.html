@@ -98,7 +98,13 @@
       touch2.addEventListener("mouseout", () => {
         $("#nuccy2").addClass("invisible");
       });
-      // addEventListener("load", () => {});
+
+      addEventListener("load", () => {
+        time = window.localStorage.getItem("time");
+        if (time === "1") {
+          $(".touch").remove();
+        }
+      });
     </script>
   </body>
 </html>

@@ -10,28 +10,46 @@
     <style></style>
   </head>
   <body>
-    <div id="background" style="background-image: url('../source/3.jpg')">
-      <div onclick="openBag()" class="bagIcon"></div>
-      <div class="bagBackground invisible">
-        <div class="inBag">item</div>
-      </div>
+    <div onclick="openBag()" class="bagIcon"></div>
+    <div class="bagBackground invisible">
+      <div class="inBag">item</div>
+    </div>
+    <div
+      id="background"
+      style="background-image: url('../source/1제배실3.jpg')"
+    >
       <img
-        class="nuccy"
-        src="../source/누열쇠고리.png"
-        style="left: 23px; top: -163px"
+        class="arrow"
+        src="../source/arrow.png"
+        style="
+          width: 120px;
+          top: 740px;
+          left: 680px;
+          transform: rotateZ(180deg);
+        "
+        onclick="goBack()"
+      />
+
+      <img
+        class="invisible nuccy"
+        src="../source/1제배실3_line.png"
+        style="width: 100%; left: 0px; top: 0px"
       />
       <div
         class="touch"
         style="
-          width: 40px;
-          height: 40px;
-          border-radius: 50%;
-          top: 503px;
-          left: 735px;
+          width: 410px;
+          height: 200px;
+          top: 500px;
+          left: 540px;
+          transform: rotateZ(5deg) rotateX(10deg) rotateY(10deg);
         "
       ></div>
-
-      <div onclick="goBack()" class="backBtn">이전으로 돌아가기</div>
+      <img
+        src="../source/시이이익물.png"
+        class="plant invisible"
+        style="position: absolute; top: 565px; left: 720px; height: 100px"
+      />
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -39,15 +57,31 @@
     <script src="../js/bag.js"></script>
     <script>
       const goBack = () => {
-        window.location.assign("길1.html");
+        window.location.assign("1재배실2.html");
       };
+
+      let time = "";
+      addEventListener("load", () => {
+        time = window.localStorage.getItem("time");
+        if (time === "1") {
+          // 황금 식물 생성
+          alert("엔딩");
+          // 배경 노랗게
+        } else if (window.localStorage.getItem("onWeed") === "true") {
+          $(".plant").removeClass("invisible");
+          $(".nuccy").remove();
+          $(".touch").remove();
+        }
+      });
 
       const touch = document.querySelector(".touch");
       touch.addEventListener("click", () => {
-        if (window.localStorage.getItem("superDrug") === "true") {
+        if (time === "1") {
+          Swal.fire("지금은 사용할 수 없습니다");
+        } else if (window.localStorage.getItem("onWeed") !== "true") {
           Swal.fire({
             icon: "question",
-            html: "산성 용액을 사용하겠습니까?",
+            html: "새싹을 심겠습니까?",
             showCloseButton: true,
             showCancelButton: true,
             focusConfirm: false,
@@ -55,9 +89,12 @@
             cancelButtonText: "아니요",
           }).then(result => {
             if (result.isConfirmed) {
+              window.localStorage.setItem("onWeed", "true");
+              window.localStorage.setItem("weed", "false");
+              $(".plant").removeClass("invisible");
               let timerInterval;
               Swal.fire({
-                text: "산성용액을 사용했습니다",
+                text: "새싹을 사용했습니다",
                 timer: 1700,
                 padding: 0,
                 width: 200,
@@ -71,18 +108,12 @@
                   clearInterval(timerInterval);
                 },
               }).then(result => {
-                Swal.fire("산성 약품으로 문을 열었습니다");
                 /* Read more about handling dismissals below */
               });
-              window.localStorage.setItem("superDrug", "false");
-              window.localStorage.setItem("openedDoor", "true");
             }
           });
-        } else if (window.localStorage.getItem("openedDoor") === "true") {
-          window.location.assign("1재배실.html");
-        } else {
-          Swal.fire("문이 굳세게 잠겨있다");
         }
+        // 줄기 심기
       });
 
       touch.addEventListener("mouseover", () => {
@@ -92,6 +123,7 @@
       touch.addEventListener("mouseout", () => {
         $(".nuccy").addClass("invisible");
       });
+
       // addEventListener("load", () => {});
     </script>
   </body>

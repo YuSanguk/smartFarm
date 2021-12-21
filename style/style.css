@@ -116,10 +116,30 @@ li {
 
 #background {
   background: no-repeat top/auto 100% black;
-  background-image: url("./images/mainroom/front/main.jpg");
   width: 100%;
   height: 100vh;
   z-index: 0;
+}
+
+.timeBackground {
+  background: no-repeat top/auto 100% black;
+  width: 100%;
+  height: 100vh;
+  z-index: 10000;
+  position: absolute;
+}
+
+@keyframes FadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.fadeOut {
+  animation: FadeOut ease-in-out 3s;
 }
 
 img {

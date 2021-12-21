@@ -16,14 +16,18 @@
         <div class="inBag">item</div>
       </div>
       <img
-        class="nuccy invisible"
+        src="../source/시이이익물.png"
+        class="plant"
+        style="position: absolute; top: 605px; left: 762px; height: 100px"
+      />
+      <img
+        class="nuccy"
         src="../source/누식물심기.png"
         style="left: 50px; top: 43.5px"
       />
       <div
         class="touch"
         style="width: 30px; height: 25px; left: 790px; top: 685px"
-        onclick="toBeaker()"
       ></div>
       <img
         class="arrow"
@@ -46,58 +50,96 @@
         window.location.assign("room1.html");
       };
 
-      const touch = document.querySelector(".touch");
-      touch.addEventListener("click", () => {
-        if (window.localStorage.getItem("seed") === "true") {
-          // 식물 심기
-          Swal.fire({
-            icon: "question",
-            html: "씨앗을 심겠습니까?",
-            showCloseButton: true,
-            showCancelButton: true,
-            focusConfirm: false,
-            confirmButtonText: "네",
-            cancelButtonText: "아니요",
-          }).then(result => {
-            if (result.isConfirmed) {
-              let timerInterval;
-              Swal.fire({
-                text: "씨앗을 사용했습니다",
-                timer: 1700,
-                padding: 0,
-                width: 300,
-                backdrop: false,
-                position: "bottom-end",
-                timerProgressBar: true,
-                didOpen: () => {
-                  Swal.showLoading();
-                },
-                willClose: () => {
-                  clearInterval(timerInterval);
-                },
-              }).then(result => {
-                Swal.fire("씨앗이 자라는데 시간이 필요해 보인다...");
-                /* Read more about handling dismissals below */
-              });
-              window.localStorage.setItem("seedOn", "true");
-              window.localStorage.setItem("seed", "false");
+      let time = "";
+
+      addEventListener("load", () => {
+        time = window.localStorage.getItem("time");
+        if (time === "1") {
+          if (window.localStorage.getItem("machineWork") === "true") {
+            if (window.localStorage.getItem("weed") !== "true") {
+              // 배경을 노란색으로
+            } // 새싹이 자랐음
+            else {
+              $(".plant").addClass("invisible");
+              // 새싹이 이미 뽑힘
             }
-          });
-        } else if (window.localStorage.getItem("seedOn") === "true") {
-          Swal.fire("씨앗이 심겨져 있다.");
-        } else {
-          Swal.fire("무언가를 심을 수 있을 것 같다.");
+          } else {
+            // 식물들이 상해있음
+          }
         }
       });
 
-      touch.addEventListener("mouseover", () => {
-        $(".nuccy").removeClass("invisible");
+      const touch = document.querySelector(".touch");
+      touch.addEventListener("click", () => {
+        if (time !== "1") {
+          if (window.localStorage.getItem("seed") === "true") {
+            // 식물 심기
+            Swal.fire({
+              icon: "question",
+              html: "씨앗을 심겠습니까?",
+              showCloseButton: true,
+              showCancelButton: true,
+              focusConfirm: false,
+              confirmButtonText: "네",
+              cancelButtonText: "아니요",
+            }).then(result => {
+              if (result.isConfirmed) {
+                let timerInterval;
+                Swal.fire({
+                  text: "씨앗을 사용했습니다",
+                  timer: 1700,
+                  padding: 0,
+                  width: 300,
+                  backdrop: false,
+                  position: "bottom-end",
+                  timerProgressBar: true,
+                  didOpen: () => {
+                    Swal.showLoading();
+                  },
+                  willClose: () => {
+                    clearInterval(timerInterval);
+                  },
+                }).then(result => {
+                  Swal.fire("씨앗이 자라는데 시간이 필요해 보인다...");
+                  /* Read more about handling dismissals below */
+                });
+                window.localStorage.setItem("seedOn", "true");
+                window.localStorage.setItem("seed", "false");
+              }
+            });
+          } else if (window.localStorage.getItem("seedOn") === "true") {
+            Swal.fire("씨앗이 심겨져 있다.");
+          } else {
+            Swal.fire("무언가를 심을 수 있을 것 같다.");
+          }
+        } else if (time === "1") {
+          if (
+            window.localStorage.getItem("machineWork") === "true" &&
+            window.localStorage.getItem("weed") !== "true"
+          ) {
+            window.localStorage.setItem("weed", "true");
+            $(".plant").addClass("invisible");
+            let timerInterval;
+            Swal.fire({
+              text: "새싹을 획득했습니다",
+              timer: 1700,
+              padding: 0,
+              width: 300,
+              backdrop: false,
+              position: "bottom-end",
+              timerProgressBar: true,
+              didOpen: () => {
+                Swal.showLoading();
+              },
+              willClose: () => {
+                clearInterval(timerInterval);
+              },
+            }).then(result => {
+              /* Read more about handling dismissals below */
+            });
+          }
+        }
       });
-
-      touch.addEventListener("mouseout", () => {
-        $(".nuccy").addClass("invisible");
-      });
-      // addEventListener("load", () => {});
     </script>
   </body>
 </html>

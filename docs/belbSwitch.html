@@ -33,42 +33,53 @@
       };
 
       addEventListener("load", () => {
-        if (window.localStorage.getItem("waterBucket") === "true") {
-          Swal.fire({
-            icon: "question",
-            html: "물을 넣겠습니까?",
-            showCloseButton: true,
-            showCancelButton: true,
-            focusConfirm: false,
-            confirmButtonText: "네",
-            cancelButtonText: "아니요",
-          }).then(result => {
-            if (result.isConfirmed) {
-              let timerInterval;
-              Swal.fire({
-                text: "물양동이를 사용했습니다",
-                timer: 1700,
-                padding: 0,
-                width: 200,
-                backdrop: false,
-                position: "bottom-end",
-                timerProgressBar: true,
-                didOpen: () => {
-                  Swal.showLoading();
-                },
-                willClose: () => {
-                  clearInterval(timerInterval);
-                },
-              }).then(result => {
-                Swal.fire("기계가 작동을 시작합니다");
-                /* Read more about handling dismissals below */
-              });
-              window.localStorage.setItem("machineWork", "true");
-              window.localStorage.setItem("waterBucket", "false");
-            }
-          });
-        } else if (window.localStorage.getItem("machineWork") !== "true") {
-          Swal.fire("기계에는 물이 필요해보인다..");
+        time = window.localStorage.getItem("time");
+        if (time === "1") {
+          Swal.fire("지금은 사용할 수 없습니다");
+        } else {
+          if (
+            window.localStorage.getItem("waterBucket") === "true" &&
+            window.localStorage.getItem("machineWork") !== "true"
+          ) {
+            Swal.fire({
+              icon: "question",
+              html: "물을 넣겠습니까?",
+              showCloseButton: true,
+              showCancelButton: true,
+              focusConfirm: false,
+              confirmButtonText: "네",
+              cancelButtonText: "아니요",
+            }).then(result => {
+              if (result.isConfirmed) {
+                let timerInterval;
+                Swal.fire({
+                  text: "물양동이를 사용했습니다",
+                  timer: 1700,
+                  padding: 0,
+                  width: 200,
+                  backdrop: false,
+                  position: "bottom-end",
+                  timerProgressBar: true,
+                  didOpen: () => {
+                    Swal.showLoading();
+                  },
+                  willClose: () => {
+                    clearInterval(timerInterval);
+                  },
+                }).then(result => {
+                  Swal.fire("기계가 작동을 시작합니다");
+                  /* Read more about handling dismissals below */
+                });
+                window.localStorage.setItem("machineWork", "true");
+                window.localStorage.setItem("waterBucket", "false");
+                window.localStorage.setItem("bucket", "true");
+              }
+            });
+          } else if (window.localStorage.getItem("machineWork") !== "true") {
+            Swal.fire("기계에는 물이 필요해보인다..");
+          } else {
+            Swal.fire("기계가 작동중입니다");
+          }
         }
       });
     </script>
