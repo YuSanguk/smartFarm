@@ -74,7 +74,16 @@ const updateBag = () => {
     "새싹",
     "황금 새싹",
   ];
-  const itemList3 = ["seed.png"];
+  const itemList3 = [
+    "씨앗.png",
+    "양동이.png",
+    "양동이물.png",
+    "약품.png",
+    "용해액.png",
+    "자라난새싹.png",
+    "황금새싹.png",
+  ];
+
   let cnt = 0;
   for (let i = 0; i < Object.keys(bagItem).length; i++) {
     const tag1 = document.createElement("div");
@@ -87,7 +96,7 @@ const updateBag = () => {
       const itemName = itemList2[i];
       tag3.innerHTML = itemName;
       // img 추가
-      tag2.setAttribute("alt", "itemImage");
+      tag2.setAttribute("src", "../source/주움/" + itemList3[i]);
       tag1.appendChild(tag2);
       tag1.appendChild(tag3);
       document.querySelector(".inBag").append(tag1);
