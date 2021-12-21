@@ -20,7 +20,7 @@
       </div>
 
       <img
-        class="nuccy"
+        class="nuccy invisible"
         id="nuccy2"
         src="../source/누스위치.png"
         style="
@@ -77,6 +77,7 @@
       const touch1 = document.querySelector("#touch1");
       touch1.addEventListener("click", () => {
         if (window.localStorage.getItem("bucket") === "true") {
+          console.log("1");
           window.localStorage.setItem("bucket", "false");
           window.localStorage.setItem("waterBucket", "true");
           let timerInterval;
@@ -113,6 +114,8 @@
               clearInterval(timerInterval);
             },
           });
+        } else {
+          Swal.fire("물이 나오는 호스다");
         }
       });
 

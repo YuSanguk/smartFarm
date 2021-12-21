@@ -23,3 +23,26 @@
   flex-direction: row;
   column-gap: 16px;
 }
+
+#btnSlot {
+  display: flex;
+  flex-direction: row;
+  column-gap: 16px;
+}
+
+#btnSlot * {
+  padding: 4px 16px;
+  border: 1px solid black;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#btnSlot *:first-child {
+  background-color: whitesmoke;
+  transition: 0.3s ease-in-out;
+}
+
+#btnSlot *:first-child:hover {
+  background-color: slategray;
+  transition: 0.3s ease-in-out;
+}

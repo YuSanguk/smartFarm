@@ -30,13 +30,15 @@
         <span onclick="fill()">work</span>
       </div>
       <div id="beaker">
-        <p onclick="posSet('inf')" id="water">무한물</p>
+        <p onclick="posSet('inf')" id="water">약품통</p>
         <p onclick="posSet('b1')" id="b1">비커1 (3L) (현재 : 0L)</p>
         <p onclick="posSet('b2')" id="b2">비커2 (5L) (현재 : 0L)</p>
         <p onclick="posSet('e')" id="score">넣는곳 (현재: 0L)</p>
       </div>
-      <p onclick="check()">완료</p>
-      <p onclick="restart()">다시 시작</p>
+      <div id="btnSlot">
+        <p onclick="check()">완료</p>
+        <p onclick="restart()">다시 시작</p>
+      </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
