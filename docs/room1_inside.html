@@ -17,7 +17,7 @@
       </div>
       <img
         src="../source/시이이익물.png"
-        class="plant"
+        class="plant invisible"
         style="position: absolute; top: 605px; left: 762px; height: 100px"
       />
       <img
@@ -57,17 +57,16 @@
         if (time === "1") {
           if (window.localStorage.getItem("machineWork") === "true") {
             if (window.localStorage.getItem("weed") !== "true") {
+              $(".plant").removeClass("invisible");
               // 배경을 노란색으로
             } // 새싹이 자랐음
             else {
-              $(".plant").addClass("invisible");
               // 새싹이 이미 뽑힘
             }
           } else {
             // 식물들이 상해있음
           }
         } else {
-          $(".plant").addClass("invisible");
         }
       });
 
