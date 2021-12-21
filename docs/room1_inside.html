@@ -56,7 +56,7 @@
         time = window.localStorage.getItem("time");
         if (time === "1") {
           console.log("!");
-          if (window.localStorage.getItem("onSeed") === "true") {
+          if (window.localStorage.getItem("seedOn") === "true") {
             if (window.localStorage.getItem("machineWork") === "true") {
               if (window.localStorage.getItem("weed") !== "true") {
                 $(".plant").removeClass("invisible");
