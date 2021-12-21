@@ -86,12 +86,11 @@
       };
 
       const timeTravel = () => {
-        console.log("boom");
         let speed = 10;
         let day = 0;
         let count = 0;
+        let checker = 0;
         const dayChange = () => {
-          console.log("e");
           if (day === 1) {
             day = 0;
             // 밤에서 낮으로
@@ -113,14 +112,16 @@
               dayChange();
             }, 70 - 0.5 * speed);
           }
-          if (count === 99) {
+          if (count === 99 && checker === 0) {
+            checker = 1;
             $("#morning").addClass("fadeOut");
+            if (window.localStorage.getItem("time") === "0") {
+              window.localStorage.setItem("time", "1");
+            } else {
+              window.localStorage.setItem("time", "0");
+            }
+            window.localStorage.setItem("timeMachineWork", "true");
             setTimeout(() => {
-              if (window.localStorage.getItem("time") === "0")
-                window.localStorage.setItem("time", "1");
-              // 1이 미래
-              else window.localStorage.setItem("time", "0");
-              window.localStorage.setItem("timeMachineWork", "true");
               $("#morning").addClass("invisible");
               Swal.fire("시간이 바뀌었습니다");
             }, 3000);

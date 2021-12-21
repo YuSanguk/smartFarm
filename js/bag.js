@@ -115,7 +115,7 @@ const updateBag = () => {
 };
 
 $(document).on("click", ".clock", () => {
-  if (window.localStorage.getItem("time") === "false")
+  if (window.localStorage.getItem("time") === "0")
     Swal.fire("건물의 시계의 시간과 일치한다.");
   else Swal.fire("건물의 시계의 시간과 일치하지 않는다.");
 });

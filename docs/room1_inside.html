@@ -55,16 +55,19 @@
       addEventListener("load", () => {
         time = window.localStorage.getItem("time");
         if (time === "1") {
-          if (window.localStorage.getItem("machineWork") === "true") {
-            if (window.localStorage.getItem("weed") !== "true") {
-              $(".plant").removeClass("invisible");
-              // 배경을 노란색으로
-            } // 새싹이 자랐음
-            else {
-              // 새싹이 이미 뽑힘
+          console.log("!");
+          if (window.localStorage.getItem("onSeed") === "true") {
+            if (window.localStorage.getItem("machineWork") === "true") {
+              if (window.localStorage.getItem("weed") !== "true") {
+                $(".plant").removeClass("invisible");
+                // 배경을 노란색으로
+              } // 새싹이 자랐음
+              else {
+                // 새싹이 이미 뽑힘
+              }
+            } else {
+              // 식물들이 상해있음
             }
-          } else {
-            // 식물들이 상해있음
           }
         } else {
         }
@@ -108,8 +111,16 @@
                 window.localStorage.setItem("seed", "false");
               }
             });
-          } else if (window.localStorage.getItem("seedOn") === "true") {
+          } else if (
+            window.localStorage.getItem("seedOn") === "true" &&
+            time === "0"
+          ) {
             Swal.fire("씨앗이 심어져 있다.");
+          } else if (
+            window.localStorage.getItem("seedOn" === "true") &&
+            time === "1"
+          ) {
+            Swal.fire("씨앗이 시들었다..");
           } else {
             Swal.fire("무언가를 심을 수 있을 것 같다.");
           }
