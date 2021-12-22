@@ -41,8 +41,8 @@
       </div>
 
       <div class="imgContainer">
-        <img class="imgA" src="../source/beaker.png" />
-        <img class="imgB" src="../source/beaker.png" />
+        <img class="imgA" src="../source/invisible.png" />
+        <img class="imgB" src="../source/invisible.png" />
       </div>
     </div>
 
@@ -109,10 +109,42 @@
         }
       };
 
+      const ShowAnimate = () => {
+        // 약품통 비커1 비커2 enter
+        if (itemA === "약품통") {
+          document.querySelector(".imgA").src = "../source/약통1png.png";
+        } else if (itemA === "비커1") {
+          document.querySelector(".imgA").src = "../source/beaker2.png";
+        } else if (itemA === "비커2") {
+          document.querySelector(".imgA").src = "../source/beaker.png";
+        }
+
+        if (itemB === "약품통") {
+          document.querySelector(".imgB").src = "../source/약통1png.png";
+        } else if (itemB === "비커1") {
+          document.querySelector(".imgB").src = "../source/beaker2.png";
+        } else if (itemB === "비커2") {
+          document.querySelector(".imgB").src = "../source/beaker.png";
+        } else if (itemB === "enter") {
+          document.querySelector(".imgB").src = "../source/약통2.png";
+        }
+      };
+
       const hide = () => {
         $(".work").addClass("invisible");
+        console.log("bb");
+        ShowAnimate();
+
+        // 효과 추가하기
+        $(".imgA").addClass("b1");
+        $(".imgB").addClass("b2");
+
         setTimeout(() => {
           $(".work").removeClass("invisible");
+          $(".imgA").removeClass("b1");
+          $(".imgB").removeClass("b2");
+          document.querySelector(".imgA").src = "../source/invisible.png";
+          document.querySelector(".imgB").src = "../source/invisible.png";
         }, 7000);
       };
 
@@ -126,10 +158,10 @@
           // 물, 비커A, 비커B, enter
           // itemA, itemB
           if (itemA === itemB) {
-          } else if (itemA === "물") {
+          } else if (itemA === "약품통") {
             if (itemB === "enter") {
             } else {
-              if (itemB === "비커A") {
+              if (itemB === "비커1") {
                 const text = "비커1 (3mL) (현재 : 3mL)";
                 document.querySelector("#b1").innerHTML = text;
                 water1 = 3;
@@ -141,13 +173,13 @@
                 hide();
               }
             }
-          } else if (itemA === "비커A") {
-            if (itemB === "물") {
+          } else if (itemA === "비커1") {
+            if (itemB === "약품통") {
               const text = "비커1 (3mL) (현재 : 0mL)";
               document.querySelector("#b1").innerHTML = text;
               water1 = 0;
               hide();
-            } else if (itemB === "비커B") {
+            } else if (itemB === "비커2") {
               if (water2 <= 2) {
                 const w = water1;
                 water2 = water2 + water1;
@@ -185,13 +217,13 @@
               // itemB로 물 옮기기 (비커A는 0으로)
               hide();
             }
-          } else if (itemA === "비커B") {
-            if (itemB === "물") {
+          } else if (itemA === "비커2") {
+            if (itemB === "약품통") {
               hide();
               water2 = 0;
               const text2 = "비커2 (5mL) (현재 : " + water2 + "mL)";
               document.querySelector("#b2").innerHTML = text2;
-            } else if (itemB === "비커A") {
+            } else if (itemB === "비커1") {
               const sum = water1 + water2;
               const w = water1;
               if (sum >= 3) {
@@ -207,6 +239,7 @@
               document.querySelector("#b1").innerHTML = text;
               const text2 = "비커2 (5mL) (현재 : " + water2 + "mL)";
               document.querySelector("#b2").innerHTML = text2;
+              hide();
             } else if (itemB === "enter") {
               result = water2 + result;
               water2 = 0;
@@ -214,6 +247,7 @@
               document.querySelector("#b2").innerHTML = text2;
               const text3 = "넣는곳 (현재: " + result + "mL)";
               document.querySelector("#score").innerHTML = text3;
+              hide();
             }
           }
         }
