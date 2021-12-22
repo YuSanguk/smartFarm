@@ -277,6 +277,7 @@
 
           setTimeout(() => {
             $("#morning").addClass("invisible");
+            $("#morning").removeClass("fadeOut");
             $("#night").addClass("invisible");
             Swal.fire("시간이 바뀌었습니다");
           }, 7000);
