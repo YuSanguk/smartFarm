@@ -41,6 +41,16 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="../js/bag.js"></script>
     <script>
+      let time = "";
+      addEventListener("load", () => {
+        time = window.localStorage.getItem("time");
+        if (time === "1") {
+          if (window.localStorage.getItem("onWeed") === "true")
+            document.querySelector("#background").style.backgroundImage =
+              "url('../source/1제배실2_yellow.jpg')";
+        }
+      });
+
       const goBack = () => {
         window.location.assign("1재배실.html");
       };
