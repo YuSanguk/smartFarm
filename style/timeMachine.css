@@ -1,0 +1,15 @@
+.flower-form {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  column-gap: 8px;
+  top: 405px;
+  left: 370px;
+}
+
+.flower-form input[type="radio"] {
+  opacity: 0;
+  width: 50px;
+  height: 60px;
+  background: whitesmoke;
+}

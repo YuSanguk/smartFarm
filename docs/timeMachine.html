@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../style/popup.css" />
     <link rel="stylesheet" href="../style/style.css" />
+    <link rel="stylesheet" href="../style/timeMachine.css" />
     <title>Document</title>
     <style></style>
   </head>
@@ -25,6 +26,16 @@
         src="../source/꼬오오옻.png"
         style="position: absolute; top: 440px; left: 900px; width: 80px"
       />
+
+      <form class="flower-form">
+        <input id="flowerBtn1" name="flower-form" type="radio" />
+        <input id="flowerBtn2" name="flower-form" type="radio" />
+        <input id="flowerBtn3" name="flower-form" type="radio" />
+        <input id="flowerBtn4" name="flower-form" type="radio" />
+        <input id="flowerBtn5" name="flower-form" type="radio" />
+        <input id="flowerBtn6" name="flower-form" type="radio" />
+      </form>
+
       <img
         id="morning"
         class="timeBackground invisible"
@@ -56,6 +67,40 @@
     </div>
 
     <script src="../js/bag.js"></script>
+    <script>
+      let flowerPos = 0;
+
+      document.querySelector("#flowerBtn1").addEventListener("click", () => {
+        flowerPos = 0; // 위치에 맞는 값 입력
+        $(".flowerBulb").addClass("invisible");
+        $("#flowerBulb1").removeClass("invisible");
+      });
+      document.querySelector("#flowerBtn2").addEventListener("click", () => {
+        flowerPos = 1; // 위치에 맞는 값 입력
+        $(".flowerBulb").addClass("invisible");
+        $("#flowerBulb2").removeClass("invisible");
+      });
+      document.querySelector("#flowerBtn3").addEventListener("click", () => {
+        flowerPos = 2; // 위치에 맞는 값 입력
+        $(".flowerBulb").addClass("invisible");
+        $("#flowerBulb3").removeClass("invisible");
+      });
+      document.querySelector("#flowerBtn4").addEventListener("click", () => {
+        flowerPos = 3; // 위치에 맞는 값 입력
+        $(".flowerBulb").addClass("invisible");
+        $("#flowerBulb4").removeClass("invisible");
+      });
+      document.querySelector("#flowerBtn5").addEventListener("click", () => {
+        flowerPos = 4; // 위치에 맞는 값 입력
+        $(".flowerBulb").addClass("invisible");
+        $("#flowerBulb5").removeClass("invisible");
+      });
+      document.querySelector("#flowerBtn6").addEventListener("click", () => {
+        flowerPos = 5; // 위치에 맞는 값 입력
+        $(".flowerBulb").addClass("invisible");
+        $("#flowerBulb6").removeClass("invisible");
+      });
+    </script>
     <script>
       addEventListener("load", () => {
         if (window.localStorage.getItem("clock") === "false") {

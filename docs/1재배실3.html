@@ -10,14 +10,14 @@
     <style></style>
   </head>
   <body>
-    <div onclick="openBag()" class="bagIcon"></div>
-    <div class="bagBackground invisible">
-      <div class="inBag">item</div>
-    </div>
     <div
       id="background"
       style="background-image: url('../source/1제배실3.jpg')"
     >
+      <div onclick="openBag()" class="bagIcon"></div>
+      <div class="bagBackground invisible">
+        <div class="inBag">item</div>
+      </div>
       <img
         class="arrow"
         src="../source/arrow.png"
@@ -65,10 +65,11 @@
         time = window.localStorage.getItem("time");
         if (time === "1") {
           // 황금 식물 생성
-          alert("엔딩");
-          // 배경 노랗게
-        } else if (window.localStorage.getItem("onWeed") === "true") {
-          $(".plant").removeClass("invisible");
+          document.querySelector("#background").style.backgroundImage =
+            'url("../source/1제배실3_yellow.jpg")';
+        }
+        if (window.localStorage.getItem("onWeed") === "true") {
+          if (time !== "1") $(".plant").removeClass("invisible");
           $(".nuccy").remove();
           $(".touch").remove();
         }
@@ -113,7 +114,6 @@
             }
           });
         }
-        // 줄기 심기
       });
 
       touch.addEventListener("mouseover", () => {
