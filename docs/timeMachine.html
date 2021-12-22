@@ -49,6 +49,14 @@
         <input id="flowerBtn6" name="flower-form" type="radio" />
       </form>
 
+      <div class="chess-form">
+        <div onclick="setPos(1)" id="chessBtn1" class="chessBtn"></div>
+        <div onclick="setPos(2)" id="chessBtn2" class="chessBtn"></div>
+        <div onclick="setPos(3)" id="chessBtn3" class="chessBtn"></div>
+        <div onclick="setPos(4)" id="chessBtn4" class="chessBtn"></div>
+        <div onclick="setPos(5)" id="chessBtn5" class="chessBtn"></div>
+      </div>
+
       <img
         id="morning"
         class="timeBackground invisible"
@@ -174,6 +182,37 @@
 
       // 3번째 비번
 
+      let firstPos = 0;
+      let secondPos = 0;
+      let posi = "0";
+
+      const setPos = p => {
+        console.log(posi, p, firstPos, secondPos);
+        if (posi === "0") {
+          // 처음 눌렀을떄
+          firstPos = p;
+          $("#chessBtn" + String(p)).addClass("firstChess");
+          posi = "a";
+        } else if (posi === "a") {
+          if (firstPos === p) {
+            $(".firstChess").removeClass("firstChess");
+            posi = "0";
+            firstPos = 0;
+          } else {
+            posi = "b";
+            secondPos = p;
+            $("#chessBtn" + String(p)).addClass("secondChess");
+          }
+        } else if (posi === "b") {
+          if (secondPos === p) {
+            posi = "a";
+            secondPos = 0;
+            $(".secondChess").removeClass("secondChess");
+          } else {
+          }
+        }
+      };
+
       addEventListener("load", () => {
         if (window.localStorage.getItem("clock") === "false") {
           window.localStorage.setItem("clock", "true");
@@ -214,6 +253,10 @@
           if (a < 5) cnt += 1;
         }
         if (cnt === 0) {
+          if (firstPos === 4 && secondPos === 3) {
+          } else {
+            cnt += 1;
+          }
         }
         if (cnt > 0) return false;
         return true; // 0이면 여행

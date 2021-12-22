@@ -10,6 +10,11 @@
   width: 40px;
   opacity: 0;
   height: 50px;
+  cursor: pointer;
+}
+
+.first-form input[type="radio"]:hover {
+  opacity: 0.2;
 }
 
 .first-form input[type="radio"]:checked {
@@ -31,6 +36,10 @@
   height: 60px;
 }
 
+.flower-form input[type="radio"]:hover {
+  opacity: 0.2;
+}
+
 .flower-form input[type="radio"]:checked {
   opacity: 1;
   color: antiquewhite;
@@ -46,4 +55,34 @@
 
 .flower-form input:nth-child(6) {
   margin-left: 45px;
+}
+
+.chess-form {
+  position: absolute;
+  top: 715px;
+  left: 400px;
+  display: flex;
+  flex-wrap: wrap;
+  width: 300px;
+  gap: 40px 55px;
+}
+
+.chess-form * {
+  width: 50px;
+  height: 50px;
+  border: 1px solid black;
+  border-radius: 50%;
+  background: white;
+  opacity: 0.4;
+  cursor: pointer;
+}
+
+.firstChess {
+  opacity: 1 !important;
+  background: blue;
+}
+
+.secondChess {
+  opacity: 1 !important;
+  background: red;
 }
