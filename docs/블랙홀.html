@@ -7,7 +7,15 @@
     <link rel="stylesheet" href="../style/popup.css" />
     <link rel="stylesheet" href="../style/style.css" />
     <title>Document</title>
-    <style></style>
+    <style>
+      .message {
+        position: absolute;
+        width: 60px;
+        left: 600px;
+        top: 500px;
+        cursor: pointer;
+      }
+    </style>
   </head>
   <body>
     <div id="background" style="background: black">
@@ -27,6 +35,8 @@
         "
         onclick="goBack()"
       />
+      <img class="message" onclick="messageClick()" src="../source/쪽지.png" />
+
       <img
         src="../source/seed.png"
         id="seed"
@@ -70,6 +80,15 @@
         window.localStorage.setItem("seed", "true");
         window.localStorage.setItem("getSeed", "true");
         $("#seed").addClass("invisible");
+      };
+
+      const messageClick = () => {
+        Swal.fire({
+          title: "쪽지",
+          text: "러시 아워의 교통체증을 해결하고 꽃의 비밀을 해결한 뒤 말을 탄 기사가 왕을 사로잡을 때, 영광의 내일을 향한 길이 열리리라",
+          width: 700,
+          padding: 20,
+        });
       };
 
       addEventListener("load", () => {

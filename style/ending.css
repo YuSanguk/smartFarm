@@ -1,6 +1,6 @@
 @keyframes endingCreditUp {
   0% {
-    transform: translateY(600px);
+    transform: translateY(550px);
   }
 
   100% {
@@ -20,6 +20,7 @@
 .endingCredit {
   display: flex;
   flex-direction: column;
+  row-gap: 20px;
   justify-content: center;
   align-items: center;
   color: gold;
@@ -29,7 +30,7 @@
 .creditUp {
   opacity: 1 !important;
 
-  animation: endingCreditUp 20s ease-in;
+  animation: endingCreditUp 16s ease-in;
 }
 
 .blocker {

@@ -87,7 +87,7 @@
       let time = "";
       addEventListener("load", () => {
         time = window.localStorage.getItem("time");
-        if (time === "1") {
+        if (time === "1" && window.localStorage.getItem("onWeed") === "true") {
           // 황금 식물 생성
           document.querySelector("#background").style.backgroundImage =
             'url("../source/1제배실3_yellow.jpg")';
