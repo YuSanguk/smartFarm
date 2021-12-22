@@ -9,6 +9,20 @@
     <title>Document</title>
   </head>
   <body>
+    <video
+      class="video"
+      src="../source/1제배실영상.mp4"
+      width="1920"
+      height="1080"
+      style="
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: 999999999999;
+      "
+      autoplay
+      muted
+    ></video>
     <div class="endingContainer">
       <div class="endingCredit">
         <p>ㅅㄱ했음 ㅋㅋ</p>
@@ -17,5 +31,16 @@
       </div>
       <div class="blocker"></div>
     </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+      addEventListener("load", () => {
+        // 영상 재생
+        setTimeout(() => {
+          $(".video").remove();
+          $(".endingCredit").addClass("creditUp");
+        }, 15000);
+      });
+    </script>
   </body>
 </html>

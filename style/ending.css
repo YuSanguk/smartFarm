@@ -22,7 +22,13 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: white;
+  color: gold;
+  opacity: 0;
+}
+
+.creditUp {
+  opacity: 1 !important;
+
   animation: endingCreditUp 20s ease-in;
 }
 

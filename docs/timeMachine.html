@@ -27,8 +27,21 @@
         style="position: absolute; top: 440px; left: 900px; width: 80px"
       />
 
+      <form class="first-form">
+        <input checked id="firstBtn1" type="radio" name="first1" />
+        <input id="firstBtn2" type="radio" name="first1" />
+        <input checked id="firstBtn3" type="radio" name="first2" />
+        <input id="firstBtn4" type="radio" name="first2" />
+        <input checked id="firstBtn5" type="radio" name="first3" />
+        <input id="firstBtn6" type="radio" name="first3" />
+        <input checked id="firstBtn7" type="radio" name="first4" />
+        <input id="firstBtn8" type="radio" name="first4" />
+        <input checked id="firstBtn9" type="radio" name="first5" />
+        <input id="firstBtn10" type="radio" name="first5" />
+      </form>
+
       <form class="flower-form">
-        <input id="flowerBtn1" name="flower-form" type="radio" />
+        <input checked id="flowerBtn1" name="flower-form" type="radio" />
         <input id="flowerBtn2" name="flower-form" type="radio" />
         <input id="flowerBtn3" name="flower-form" type="radio" />
         <input id="flowerBtn4" name="flower-form" type="radio" />
@@ -69,6 +82,63 @@
 
     <script src="../js/bag.js"></script>
     <script>
+      let Fbtn1 = 0;
+      let Fbtn2 = 0;
+      let Fbtn3 = 0;
+      let Fbtn4 = 0;
+      let Fbtn5 = 0;
+
+      document.querySelector("#firstBtn1").addEventListener("click", () => {
+        if (Fbtn1 !== 0) {
+          Fbtn1 = 0;
+        }
+      });
+      document.querySelector("#firstBtn2").addEventListener("click", () => {
+        if (Fbtn1 !== 1) {
+          Fbtn1 = 1;
+        }
+      });
+      document.querySelector("#firstBtn3").addEventListener("click", () => {
+        if (Fbtn2 !== 0) {
+          Fbtn2 = 0;
+        }
+      });
+      document.querySelector("#firstBtn4").addEventListener("click", () => {
+        if (Fbtn2 !== 1) {
+          Fbtn2 = 1;
+        }
+      });
+      document.querySelector("#firstBtn5").addEventListener("click", () => {
+        if (Fbtn3 !== 0) {
+          Fbtn3 = 0;
+        }
+      });
+      document.querySelector("#firstBtn6").addEventListener("click", () => {
+        if (Fbtn3 !== 1) {
+          Fbtn3 = 1;
+        }
+      });
+      document.querySelector("#firstBtn7").addEventListener("click", () => {
+        if (Fbtn4 !== 0) {
+          Fbtn4 = 0;
+        }
+      });
+      document.querySelector("#firstBtn8").addEventListener("click", () => {
+        if (Fbtn4 !== 1) {
+          Fbtn4 = 1;
+        }
+      });
+      document.querySelector("#firstBtn9").addEventListener("click", () => {
+        if (Fbtn5 !== 0) {
+          Fbtn5 = 0;
+        }
+      });
+      document.querySelector("#firstBtn10").addEventListener("click", () => {
+        if (Fbtn5 !== 1) {
+          Fbtn5 = 1;
+        }
+      });
+
       let flowerPos = 0;
 
       document.querySelector("#flowerBtn1").addEventListener("click", () => {
@@ -101,8 +171,9 @@
         $(".flowerBulb").addClass("invisible");
         $("#flowerBulb6").removeClass("invisible");
       });
-    </script>
-    <script>
+
+      // 3번째 비번
+
       addEventListener("load", () => {
         if (window.localStorage.getItem("clock") === "false") {
           window.localStorage.setItem("clock", "true");
@@ -127,27 +198,55 @@
         }
       });
 
+      const checkPassword = () => {
+        let cnt = 0;
+        if (flowerPos === 2) {
+        } else {
+          cnt = 1;
+        }
+        if (cnt === 0) {
+          let a = 0;
+          if (Fbtn1 === 1) a += 1;
+          if (Fbtn2 === 0) a += 1;
+          if (Fbtn3 === 1) a += 1;
+          if (Fbtn4 === 1) a += 1;
+          if (Fbtn5 === 0) a += 1;
+          if (a < 5) cnt += 1;
+        }
+        if (cnt === 0) {
+        }
+        if (cnt > 0) return false;
+        return true; // 0이면 여행
+      };
+
+      const timeTravel = () => {
+        const check = checkPassword();
+        if (check) {
+          $("#morning").removeClass("invisible");
+          $("#night").removeClass("invisible");
+          $("#morning").addClass("fadeOut");
+          if (window.localStorage.getItem("time") === "0") {
+            window.localStorage.setItem("time", "1");
+          } else {
+            window.localStorage.setItem("time", "0");
+          }
+          window.localStorage.setItem("timeMachineWork", "true");
+
+          setTimeout(() => {
+            $("#morning").addClass("invisible");
+            $("#night").addClass("invisible");
+            Swal.fire("시간이 바뀌었습니다");
+          }, 7000);
+        } else {
+          Swal.fire("오류가 있습니다");
+        }
+      };
+    </script>
+    <script>
       const goBack = () => {
         window.location.assign("belb.html");
       };
 
-      const timeTravel = () => {
-        $("#morning").removeClass("invisible");
-        $("#night").removeClass("invisible");
-        $("#morning").addClass("fadeOut");
-        if (window.localStorage.getItem("time") === "0") {
-          window.localStorage.setItem("time", "1");
-        } else {
-          window.localStorage.setItem("time", "0");
-        }
-        window.localStorage.setItem("timeMachineWork", "true");
-
-        setTimeout(() => {
-          $("#morning").addClass("invisible");
-          $("#night").addClass("invisible");
-          Swal.fire("시간이 바뀌었습니다");
-        }, 7000);
-      };
       // addEventListener("load", () => {});
     </script>
   </body>

@@ -40,6 +40,23 @@
         id="touch2"
         style="width: 400px; height: 180px; top: 400px; left: 1000px"
       ></div>
+      <img
+        class="nuccy invisible"
+        id="nuccy3"
+        src="../source/누힌트3.png"
+        style="width: 100vw"
+      />
+      <div
+        class="touch"
+        id="touch3"
+        style="
+          width: 100px;
+          height: 120px;
+          top: 660px;
+          left: 30px;
+          transform: rotateZ(-20deg);
+        "
+      ></div>
 
       <img
         class="arrow"
@@ -132,6 +149,25 @@
 
       touch2.addEventListener("mouseout", () => {
         $("#nuccy2").addClass("invisible");
+      });
+
+      const touch3 = document.querySelector("#touch3");
+      touch3.addEventListener("click", () => {
+        Swal.fire({
+          text: "체스 사진이다..",
+          imageUrl: "../source/hintImg.png",
+          imageWidth: 400,
+          imageHeight: 200,
+          imageAlt: "Custom image",
+        });
+      });
+
+      touch3.addEventListener("mouseover", () => {
+        $("#nuccy3").removeClass("invisible");
+      });
+
+      touch3.addEventListener("mouseout", () => {
+        $("#nuccy3").addClass("invisible");
       });
     </script>
   </body>

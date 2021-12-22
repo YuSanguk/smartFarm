@@ -101,7 +101,8 @@
       });
 
       const getGold = () => {
-        alert("아오아ㅗ아와");
+        window.localStorage.getItem("goldWeed", "true");
+        window.location.assign("ending.html");
       };
 
       const touch = document.querySelector(".touch");

@@ -1,17 +1,39 @@
+.first-form {
+  position: absolute;
+  display: flex;
+  left: 369px;
+  top: 128px;
+  column-gap: 6px;
+}
+
+.first-form input[type="radio"] {
+  width: 40px;
+  opacity: 0;
+  height: 50px;
+}
+
+.first-form input[type="radio"]:checked {
+  opacity: 0.5;
+}
+
 .flower-form {
   position: absolute;
   display: flex;
   flex-direction: row;
   column-gap: 8px;
-  top: 405px;
+  top: 425px;
   left: 370px;
 }
 
 .flower-form input[type="radio"] {
-  opacity: 1;
+  opacity: 0;
   width: 50px;
   height: 60px;
-  background: whitesmoke;
+}
+
+.flower-form input[type="radio"]:checked {
+  opacity: 1;
+  color: antiquewhite;
 }
 
 .flower-form input:nth-child(4) {

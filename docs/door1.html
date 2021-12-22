@@ -43,41 +43,47 @@
       };
 
       const touch = document.querySelector(".touch");
+      let time = "";
       touch.addEventListener("click", () => {
+        time = window.localStorage.getItem("time");
         if (window.localStorage.getItem("superDrug") === "true") {
-          Swal.fire({
-            icon: "question",
-            html: "산성 용액을 사용하겠습니까?",
-            showCloseButton: true,
-            showCancelButton: true,
-            focusConfirm: false,
-            confirmButtonText: "네",
-            cancelButtonText: "아니요",
-          }).then(result => {
-            if (result.isConfirmed) {
-              let timerInterval;
-              Swal.fire({
-                text: "산성용액을 사용했습니다",
-                timer: 1700,
-                padding: 0,
-                width: 200,
-                backdrop: false,
-                position: "bottom-end",
-                timerProgressBar: true,
-                didOpen: () => {
-                  Swal.showLoading();
-                },
-                willClose: () => {
-                  clearInterval(timerInterval);
-                },
-              }).then(result => {
-                Swal.fire("산성 약품으로 문을 열었습니다");
-                /* Read more about handling dismissals below */
-              });
-              window.localStorage.setItem("superDrug", "false");
-              window.localStorage.setItem("openedDoor", "true");
-            }
-          });
+          if (time !== "1") {
+            Swal.fire({
+              icon: "question",
+              html: "산성 용액을 사용하겠습니까?",
+              showCloseButton: true,
+              showCancelButton: true,
+              focusConfirm: false,
+              confirmButtonText: "네",
+              cancelButtonText: "아니요",
+            }).then(result => {
+              if (result.isConfirmed) {
+                let timerInterval;
+                Swal.fire({
+                  text: "산성용액을 사용했습니다",
+                  timer: 1700,
+                  padding: 0,
+                  width: 200,
+                  backdrop: false,
+                  position: "bottom-end",
+                  timerProgressBar: true,
+                  didOpen: () => {
+                    Swal.showLoading();
+                  },
+                  willClose: () => {
+                    clearInterval(timerInterval);
+                  },
+                }).then(result => {
+                  Swal.fire("산성 약품으로 문을 열었습니다");
+                  /* Read more about handling dismissals below */
+                });
+                window.localStorage.setItem("superDrug", "false");
+                window.localStorage.setItem("openedDoor", "true");
+              }
+            });
+          } else {
+            Swal.fire("지금은 사용할 수 없습니다");
+          }
         } else if (window.localStorage.getItem("openedDoor") === "true") {
           window.location.assign("1재배실.html");
         } else {
