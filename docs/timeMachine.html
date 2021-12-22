@@ -39,6 +39,7 @@
       <img
         id="morning"
         class="timeBackground invisible"
+        style="z-index: 111111111"
         src="../source/벨브 all.jpg"
       />
       <img
@@ -131,48 +132,21 @@
       };
 
       const timeTravel = () => {
-        let speed = 10;
-        let day = 0;
-        let count = 0;
-        let checker = 0;
-        const dayChange = () => {
-          if (day === 1) {
-            day = 0;
-            // 밤에서 낮으로
-            $("#night").addClass("invisible");
-            $("#morning").removeClass("invisible");
-            if (1) {
-            }
-          } else {
-            day = 1;
-            $("#morning").addClass("invisible");
-            $("#night").removeClass("invisible");
-          }
-          // 시간 바꾸기
-          if (count < 99) {
-            if (count < 50) speed = speed + 1;
-            else speed = speed - 1;
-            count += 1;
-            setTimeout(() => {
-              dayChange();
-            }, 70 - 0.5 * speed);
-          }
-          if (count === 99 && checker === 0) {
-            checker = 1;
-            $("#morning").addClass("fadeOut");
-            if (window.localStorage.getItem("time") === "0") {
-              window.localStorage.setItem("time", "1");
-            } else {
-              window.localStorage.setItem("time", "0");
-            }
-            window.localStorage.setItem("timeMachineWork", "true");
-            setTimeout(() => {
-              $("#morning").addClass("invisible");
-              Swal.fire("시간이 바뀌었습니다");
-            }, 3000);
-          }
-        };
-        dayChange();
+        $("#morning").removeClass("invisible");
+        $("#night").removeClass("invisible");
+        $("#morning").addClass("fadeOut");
+        if (window.localStorage.getItem("time") === "0") {
+          window.localStorage.setItem("time", "1");
+        } else {
+          window.localStorage.setItem("time", "0");
+        }
+        window.localStorage.setItem("timeMachineWork", "true");
+
+        setTimeout(() => {
+          $("#morning").addClass("invisible");
+          $("#night").addClass("invisible");
+          Swal.fire("시간이 바뀌었습니다");
+        }, 7000);
       };
       // addEventListener("load", () => {});
     </script>

@@ -133,13 +133,22 @@ li {
   0% {
     opacity: 1;
   }
-  100% {
+
+  42% {
     opacity: 0;
+  }
+
+  56% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
   }
 }
 
 .fadeOut {
-  animation: FadeOut ease-in-out 3s;
+  animation: FadeOut 7s;
 }
 
 img {

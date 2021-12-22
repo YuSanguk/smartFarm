@@ -50,6 +50,19 @@
         class="plant invisible"
         style="position: absolute; top: 565px; left: 720px; height: 100px"
       />
+      <img
+        onclick="getGold()"
+        src="../source/황아아앙금새싹.png"
+        class="invisible"
+        id="gold"
+        style="
+          position: absolute;
+          top: 610px;
+          left: 700px;
+          height: 100px;
+          cursor: pointer;
+        "
+      />
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -70,10 +83,15 @@
         }
         if (window.localStorage.getItem("onWeed") === "true") {
           if (time !== "1") $(".plant").removeClass("invisible");
+          if (time === "1") $("#gold").removeClass("invisible");
           $(".nuccy").remove();
           $(".touch").remove();
         }
       });
+
+      const getGold = () => {
+        alert("아오아ㅗ아와");
+      };
 
       const touch = document.querySelector(".touch");
       touch.addEventListener("click", () => {
