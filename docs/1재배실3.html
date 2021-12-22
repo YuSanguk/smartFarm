@@ -109,7 +109,10 @@
       touch.addEventListener("click", () => {
         if (time === "1") {
           Swal.fire("지금은 사용할 수 없습니다");
-        } else if (window.localStorage.getItem("onWeed") !== "true") {
+        } else if (
+          window.localStorage.getItem("onWeed") !== "true" &&
+          window.localStorage.getItem("weed") === "true"
+        ) {
           Swal.fire({
             icon: "question",
             html: "새싹을 심겠습니까?",
@@ -143,6 +146,8 @@
               });
             }
           });
+        } else if (window.localStorage.getItem("weed") === "false") {
+          Swal.fire("무언가를 심을 수 있을 것 같다..");
         }
       });
 

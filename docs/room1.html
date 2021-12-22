@@ -89,6 +89,8 @@
       addEventListener("load", () => {
         const bucket = window.localStorage.getItem("bucketGet");
         if (bucket === "true") {
+          $("#nuccy1").remove();
+          $("#touch1").remove();
           document.querySelector("#background").style["background-image"] =
             'url("../source/6_grass.jpg")';
         }
