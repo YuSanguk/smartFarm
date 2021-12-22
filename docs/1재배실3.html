@@ -47,8 +47,15 @@
       ></div>
       <img
         src="../source/시이이익물.png"
+        onclick="checkPlant()"
         class="plant invisible"
-        style="position: absolute; top: 565px; left: 720px; height: 100px"
+        style="
+          position: absolute;
+          top: 565px;
+          left: 720px;
+          height: 100px;
+          cursor: pointer;
+        "
       />
       <img
         onclick="getGold()"
@@ -71,6 +78,10 @@
     <script>
       const goBack = () => {
         window.location.assign("1재배실2.html");
+      };
+
+      const checkPlant = () => {
+        Swal.fire("식물이 심어져있습니다");
       };
 
       let time = "";

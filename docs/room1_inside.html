@@ -123,6 +123,7 @@
           }
         } else if (
           window.localStorage.getItem("seedOn") === "true" &&
+          window.localStorage.getItem("machineWork") !== "true" &&
           time === "1"
         ) {
           Swal.fire("씨앗이 시들었다..");
