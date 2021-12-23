@@ -235,6 +235,9 @@
             /* Read more about handling dismissals below */
           });
         }
+        if (window.localStorage.getItem("timeMachineWork") === "true") {
+          Swal.fire("암호없이 타임머신을 이용할 수 있습니다");
+        }
       });
 
       const checkPassword = () => {
@@ -264,7 +267,10 @@
 
       const timeTravel = () => {
         const check = checkPassword();
-        if (check) {
+        if (
+          check ||
+          window.localStorage.getItem("timeMachineWork") === "true"
+        ) {
           $("#morning").removeClass("invisible");
           $("#night").removeClass("invisible");
           $("#morning").addClass("fadeOut");
